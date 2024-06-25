@@ -24,9 +24,11 @@ int main(){
 
 		enum Class Type::uint8_t
 		{
-			Unknown;
-			Numeric_iterals;
-			Operator
+			Unknown,
+			Numeric_iterals,
+			Operator,
+			Parenthesis_Open,
+			Parenthesis_Close,
 		}type = Type::Unknown;
 		
 		operator op;
@@ -41,6 +43,28 @@ int main(){
 			stkOutput.push_back(std::string(1, c), Symbol::Type::Numeric_iterals);
 
 		}
+
+		else if(c == '('){
+			stkHolding.push_front{(std::string(1, c), Symbol::Type::Parenthesis_Open});
+			
+		}
+		else if(c == ')'){
+			
+			while(!stkHolding.empty() && stkHolding.front().type != Symbol::Type::Parenthesis_Open){
+				stkOutput.push_back
+				stkHolding.pop_front();
+			}
+
+			if(stkHolding.empty()){
+				std::cout << "WHAT AM I DOIIINGG 111\n";
+			}
+			else if((!stkHolding.empty() && stkHolding.front().type == Symbol::Type::Parenthesis_Open){
+				stkHolding.pop_front();
+			}
+
+		}
+
+
 		else if(precTable.contains(c)){
 			const auto &new_op = prectable[c];
 			while(!stkHolding.rmpty()){
